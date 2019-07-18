@@ -1,6 +1,6 @@
 provider "aws"
 {
- region = "ap-northeast-1"
+ region = "us-east-1"
 }
 
 resource "aws_internet_gateway" "ggkIGW" {
@@ -23,6 +23,7 @@ resource "aws_vpc" "ggk"
 resource "aws_subnet" "ggksubnet1" {
   vpc_id 	= "${aws_vpc.ggk.id}"
   cidr_block = "192.168.10.0/25"
+  map_public_ip_on_launch = true
 
   tags {
 	Name = "ggksubnet1"
@@ -74,7 +75,7 @@ resource "aws_instance" "TF_instance"
 {
  ami="ami-2a0f324f"
  instance_type="t2.micro"
- key_name="Splunk"
+ key_name="Tomcat"
  tags{
   Name="TFinstance"
  }
